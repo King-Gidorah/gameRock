@@ -1,0 +1,103 @@
+// heroes.cpp
+#include "heroes.h"
+#include "enemies.h"
+
+// Hero implementations
+Hero::Hero(int s, int h)
+    : Health(s, h), strength(1), intellect(1), constitution(1), critChance(0.1f), level(1), gold(25) {
+    attackDamage = 10 * strength;
+}
+
+Hero::~Hero() {}
+
+void Hero::setName(std::string n) {
+    name = n;
+}
+
+std::string Hero::getName() {
+    return name;
+}
+
+int Hero::getSpeed() {
+    return speed;
+}
+
+int Hero::getLvl() {
+    return level;
+}
+
+int Hero::getGold() {
+    return gold;
+}
+
+void Hero::lvlUp() {
+    strength += 1;
+    intellect += 1;
+    constitution += 1;
+    critChance += 0.05f;
+    level += 1;
+}
+
+bool Hero::isCriticalHit() {
+    float randomValue = static_cast<float>(rand()) / RAND_MAX;
+    return randomValue < critChance;
+}
+
+void Hero::attack(Enemy& target) {
+    std::cout << getName() << " attacks for " << attackDamage << "!" << std::endl;
+    if (isCriticalHit()) {
+        target.takeDamage(attackDamage * 2);
+        return;
+    }
+    target.takeDamage(attackDamage);
+}
+
+void Hero::addGold(int amount) {
+    gold += amount;
+}
+
+// Warrior implementation
+Warrior::Warrior() : Hero(100, 100) {
+    strength = 7;
+    intellect = 4;
+    constitution = 10;
+    critChance = 0.25f;
+    speed = 3;
+}
+
+// Cleric implementation
+Cleric::Cleric() : Hero(100, 100) {
+    strength = 6;
+    intellect = 7;
+    constitution = 10;
+    critChance = 0.25f;
+    speed = 4;
+}
+
+void Cleric::healSelf() {
+    gainHealth(25);
+    std::cout << "Cleric heals for 25 health" << std::endl;
+}
+
+// Wizard implementation
+Wizard::Wizard() : Hero(0, 100) {
+    strength = 3;
+    intellect = 10;
+    constitution = 3;
+    critChance = 0.30f;
+    speed = 5;
+}
+
+void Wizard::fireball(Enemy& target) {
+    std::cout << "Wizard uses fireball" << std::endl;
+    target.takeDamage(intellect * 25);
+}
+
+// Rogue implementation
+Rogue::Rogue() : Hero(25, 100) {
+    strength = 6;
+    intellect = 3;
+    constitution = 7;
+    critChance = 0.75f;
+    speed = 9;
+}
