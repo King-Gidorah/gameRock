@@ -1,6 +1,9 @@
 // heroes.cpp
 #include "heroes.h"
 #include "enemies.h"
+#include <iostream>
+
+using namespace std;
 
 // Hero implementations
 Hero::Hero(int s, int h)
@@ -56,6 +59,10 @@ void Hero::addGold(int amount) {
     gold += amount;
 }
 
+void Hero::spells() {
+    std::cout << "No spells available" << std::endl;
+}
+
 // Warrior implementation
 Warrior::Warrior() : Hero(100, 100) {
     strength = 7;
@@ -92,6 +99,30 @@ void Wizard::fireball(Enemy& target) {
     std::cout << "Wizard uses fireball" << std::endl;
     target.takeDamage(intellect * 25);
 }
+
+void Wizard::spells(Enemy& target) {
+    cout << "1. fireball" << endl;
+    cout << "2. lighning" << endl;
+    cout << "3. EXPLOSION" << endl;
+    
+    int choice;
+    cin >> choice;
+    switch (choice) {
+        case 1:
+            fireball(target);
+            break;
+        case 2:
+            //lightning(target);
+            break;
+        case 3:
+            //explosion(target);
+            break;
+        default:
+            cout << "Invalid choice" << endl;
+            Wizard::spells(target);
+    }
+}
+
 
 // Rogue implementation
 Rogue::Rogue() : Hero(25, 100) {

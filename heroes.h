@@ -35,6 +35,7 @@ public:
     bool isCriticalHit();
     virtual void attack(Enemy& target);
     void addGold(int amount);
+    virtual void spells();
 };
 
 class Warrior : public Hero {
@@ -52,6 +53,7 @@ class Wizard : public Hero {
 public:
     Wizard();
     void fireball(Enemy& target);
+    void spells(Enemy& target);
 };
 
 class Rogue : public Hero {
