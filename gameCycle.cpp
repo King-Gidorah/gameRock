@@ -33,75 +33,79 @@ void Tournament::endDay(Hero& player) {
 }
 
 void Tournament::fightBattles(Hero& player) {
-    while (battlesToday < maxBattlesPerDay) {
-        cout << "Battle " << (battlesToday + 1) << " of Day " << currentDay << " begins." << endl;
+    while (getBattlesToday() < maxBattlesPerDay) {
+        cout << "Battle " << (getBattlesToday() + 1) << " of Day " << getCurrentDay() << " begins." << endl;
 
         // Create an enemy based on current day and battle number
         Enemy* enemy = nullptr;
-        switch (currentDay) {
+        switch (getCurrentDay()) {
         case 1:
-            if(battlesToday==0) {
+            if (getBattlesToday() == 0) {
                 enemy = new Rat();
                 cout << "Get ready to fight a Rat!" << endl;
-            }
-            if(battlesToday==1) {
+            } else if (getBattlesToday() == 1) {
                 enemy = new Knight();
                 cout << "Get ready to fight a Knight!" << endl;
-            }
-            if(battlesToday==2) {
+            } else if (getBattlesToday() == 2) {
                 enemy = new EvilWizard();
                 cout << "Get ready to fight an Evil Wizard!" << endl;
-            }
-            if(battlesToday==3) {
+            } else if (getBattlesToday() == 3) {
                 enemy = new SlimeMonster();
-                cout << "Good luck with todays boss. A Slime Monster!" << endl;
+                cout << "Good luck with today's boss: a Slime Monster!" << endl;
             }
+            break; // Ensure fall-through does not occur
+
         case 2:
-            if(battlesToday==0) {
+            if (getBattlesToday() == 0) {
                 enemy = new Dog();
                 cout << "Get ready to fight a Dog!" << endl;
-            }
-            if(battlesToday==1) {
+            } else if (getBattlesToday() == 1) {
                 enemy = new RoyalKnight();
                 cout << "Get ready to fight a Royal Knight!" << endl;
-            }
-            if(battlesToday==2) {
+            } else if (getBattlesToday() == 2) {
                 enemy = new EvilWarrior();
                 cout << "Get ready to fight an Evil Warrior!" << endl;
-            }
-            if(battlesToday==3) {
+            } else if (getBattlesToday() == 3) {
                 enemy = new Paladin();
-                cout << "Good luck with todays boss. A Paladin!" << endl;
+                cout << "Good luck with today's boss: a Paladin!" << endl;
             }
+            break;
+
         case 3:
-            if(battlesToday==0) {
+            if (getBattlesToday() == 0) {
                 enemy = new Cerberus();
                 cout << "Get ready to fight a Cerberus!" << endl;
-            }
-            if(battlesToday==1) {
+            } else if (getBattlesToday() == 1) {
                 enemy = new EvilRogue();
                 cout << "Get ready to fight an Evil Rogue!" << endl;
-            }
-            if(battlesToday==2) {
+            } else if (getBattlesToday() == 2) {
                 enemy = new EvilCleric();
                 cout << "Get ready to fight an Evil Cleric!" << endl;
-            }
-            if(battlesToday==3) {
+            } else if (getBattlesToday() == 3) {
                 enemy = new King();
-                cout << "Good luck with the final boss. The King!" << endl;
+                cout << "Good luck with the final boss: the King!" << endl;
             }
+            break;
+
         default:
-            cout << "Something went wrong" << endl;;
+            cout << "Something went wrong. Invalid day: " << getCurrentDay() << endl;
+            return; // Exit function on invalid input
+        }
+
+        if (!enemy) {
+            cout << "Error: Failed to create an enemy for battle " << getBattlesToday() + 1 << endl;
+            break; // Exit the loop gracefully if enemy creation fails
         }
 
         // Start and resolve battle
         Battle battle;
         battle.startBattle(player, *enemy);
-        battle.resolveBattle(player, currentDay);
+        battle.resolveBattle(player, getCurrentDay());
 
         delete enemy; // Cleanup
         battlesToday++;
     }
+
     cout << "Great work! You've completed " << maxBattlesPerDay << " battles today. Come back tomorrow!" << endl;
 }
 
