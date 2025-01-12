@@ -22,12 +22,12 @@ int Tournament::getMaxBattlesPerDay() const {
 }
 
 void Tournament::startDay() {
-    cout << "Day " << currentDay << " begins!" << endl;
+    cout << "\n--- Day " << getCurrentDay() + 1 << " ---" << endl;
     battlesToday = 0;
 }
 
 void Tournament::endDay(Hero& player) {
-    cout << "Day " << currentDay << " ends. Time to rest!" << endl;
+    cout << "Day " << getCurrentDay() << " ends. Time to rest!" << endl;
     player.lvlUp();
     currentDay++;
 }
@@ -42,41 +42,53 @@ void Tournament::fightBattles(Hero& player) {
         case 1:
             if(battlesToday==0) {
                 enemy = new Rat();
+                cout << "Get ready to fight a Rat!" << endl;
             }
             if(battlesToday==1) {
                 enemy = new Knight();
+                cout << "Get ready to fight a Knight!" << endl;
             }
             if(battlesToday==2) {
                 enemy = new EvilWizard();
+                cout << "Get ready to fight an Evil Wizard!" << endl;
             }
             if(battlesToday==3) {
                 enemy = new SlimeMonster();
+                cout << "Good luck with todays boss. A Slime Monster!" << endl;
             }
         case 2:
             if(battlesToday==0) {
                 enemy = new Dog();
+                cout << "Get ready to fight a Dog!" << endl;
             }
             if(battlesToday==1) {
                 enemy = new RoyalKnight();
+                cout << "Get ready to fight a Royal Knight!" << endl;
             }
             if(battlesToday==2) {
                 enemy = new EvilWarrior();
+                cout << "Get ready to fight an Evil Warrior!" << endl;
             }
             if(battlesToday==3) {
                 enemy = new Paladin();
+                cout << "Good luck with todays boss. A Paladin!" << endl;
             }
         case 3:
             if(battlesToday==0) {
                 enemy = new Cerberus();
+                cout << "Get ready to fight a Cerberus!" << endl;
             }
             if(battlesToday==1) {
                 enemy = new EvilRogue();
+                cout << "Get ready to fight an Evil Rogue!" << endl;
             }
             if(battlesToday==2) {
                 enemy = new EvilCleric();
+                cout << "Get ready to fight an Evil Cleric!" << endl;
             }
             if(battlesToday==3) {
                 enemy = new King();
+                cout << "Good luck with the final boss. The King!" << endl;
             }
         default:
             cout << "Something went wrong" << endl;;
@@ -115,7 +127,7 @@ void Battle::resolveBattle(Hero& player, int dayCount) {
     player.resetHealth();
     player.resetShield();
     player.addGold(50 * dayCount);
-    cout << "You have won the battle and earned " << 50 * dayCount << "gold!" << endl;
+    cout << "You have won the battle and earned " << 50 * dayCount << " gold!" << endl;
 }
 
 bool Battle::determineTurnOrder(Hero& player, Enemy& enemy) {

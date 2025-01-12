@@ -71,8 +71,8 @@ int main() {
     // Tournament Setup
     Tournament tournament;
 
-    while (tournament.getCurrentDay() < 3) {
-        cout << "\n--- Day " << tournament.getCurrentDay() + 1 << " ---" << endl;
+    while (tournament.getCurrentDay() < 4) {
+        cout << "\n--- Day " << tournament.getCurrentDay() << " ---" << endl;
         tournament.startDay();
 
         cout << "You have " << hero->getCurrHealth() << " health, "
