@@ -151,6 +151,7 @@ int main() {
         for (int i = 0; i < 4; ++i) {
             tournament.fightBattles(*hero);
         }
+        cout << "Great work! You've completed " << tournament.getMaxBattlesPerDay() << " battles today. Come back tomorrow!" << endl;
         tournament.endDay(*hero);
     }
 

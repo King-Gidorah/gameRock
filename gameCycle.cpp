@@ -105,9 +105,6 @@ void Tournament::fightBattles(Hero& player) {
         delete enemy; // Cleanup memory
         battlesToday++;
     }
-
-    // Print this message only once, after all battles are complete
-    cout << "Great work! You've completed " << maxBattlesPerDay << " battles today. Come back tomorrow!" << endl;
 }
 
 // Battle Class Definitions
