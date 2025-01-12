@@ -137,25 +137,38 @@ bool Battle::determineTurnOrder(Hero& player, Enemy& enemy) {
 }
 
 void Battle::playerTurn(Hero& player, Enemy& target) {
-    cout << "It's your turn! What would you like to do?" << endl;
-    cout << "1. Attack  2. Magic  3. Items" << endl;
     int action;
-    cin >> action;
+    bool validAction = false; // Flag to track whether the action is valid
 
-    switch (action) {
-    case 1:
-        player.attack(target);
-        break;
-    case 2:
-        cout << "Choose a spell to use (ends your turn)." << endl;
-        // Add spell logic here
-        break;
-    case 3:
-        cout << "Choose an item to use (ends your turn)." << endl;
-        // Add item logic here
-        break;
-    default:
-        cout << "Invalid action! Turn skipped." << endl;
+    // Loop until a valid action is chosen
+    while (!validAction) {
+        cout << "It's your turn! What would you like to do?" << endl;
+        cout << "1. Attack  2. Magic  3. Items" << endl;
+        cin >> action;
+
+        switch (action) {
+        case 1:
+            player.attack(target);
+            validAction = true;  // Action was valid, exit the loop
+            break;
+        case 2:
+            if (player.getType() == "Wizard" || player.getType() == "Cleric") {
+                player.spells();  // Assume this function handles the magic logic
+                validAction = true;  // Action was valid, exit the loop
+            } else {
+                cout << "You don't have spells. Please choose another action." << endl;
+            }
+            break;
+        case 3:
+            cout << "Choose an item to use (ends your turn)." << endl;
+            // Add item logic here
+            validAction = true;  // Action was valid, exit the loop
+            break;
+        default:
+            cout << "Invalid action! Please choose again." << endl;
+            // Loop continues and the player can select again
+            break;
+        }
     }
 }
 
