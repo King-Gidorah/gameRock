@@ -53,7 +53,7 @@ void Tournament::fightBattles(Hero& player) {
                 enemy = new SlimeMonster();
                 cout << "Good luck with today's boss: a Slime Monster!" << endl;
             }
-            break; // Ensure fall-through does not occur
+            break; // Ensure no fall-through to subsequent cases
 
         case 2:
             if (getBattlesToday() == 0) {
@@ -102,10 +102,11 @@ void Tournament::fightBattles(Hero& player) {
         battle.startBattle(player, *enemy);
         battle.resolveBattle(player, getCurrentDay());
 
-        delete enemy; // Cleanup
+        delete enemy; // Cleanup memory
         battlesToday++;
     }
 
+    // Print this message only once, after all battles are complete
     cout << "Great work! You've completed " << maxBattlesPerDay << " battles today. Come back tomorrow!" << endl;
 }
 
