@@ -50,6 +50,7 @@ public:
     Cleric();
     void healSelf();
     string getType();
+    void spells();
 };
 
 class Wizard : public Hero {

@@ -89,6 +89,21 @@ Cleric::Cleric() : Hero(100, 100) {
     speed = 4;
 }
 
+void Cleric::spells() {
+    cout << "1. Heal Self" << endl;
+    
+    int choice;
+    cin >> choice;
+    switch (choice) {
+        case 1:
+            healSelf();
+            break;
+        default:
+            cout << "Invalid choice" << endl;
+            Cleric::spells();
+    }
+}
+
 string Cleric::getType() {
     return "Cleric";
 }
