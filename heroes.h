@@ -31,6 +31,7 @@ public:
     int getSpeed();
     int getLvl();
     int getGold();
+    virtual std::string getType();
     void lvlUp();
     bool isCriticalHit();
     virtual void attack(Enemy& target);
@@ -41,12 +42,14 @@ public:
 class Warrior : public Hero {
 public:
     Warrior();
+    string getType();
 };
 
 class Cleric : public Hero {
 public:
     Cleric();
     void healSelf();
+    string getType();
 };
 
 class Wizard : public Hero {
@@ -54,11 +57,13 @@ public:
     Wizard();
     void fireball(Enemy& target);
     void spells(Enemy& target);
+    string getType();
 };
 
 class Rogue : public Hero {
 public:
     Rogue();
+    string getType();
 };
 
 #endif // HEROES_H

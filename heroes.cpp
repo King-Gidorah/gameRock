@@ -33,6 +33,10 @@ int Hero::getGold() {
     return gold;
 }
 
+string Hero::getType() {
+    return "Hero";
+}
+
 void Hero::lvlUp() {
     strength += 1;
     intellect += 1;
@@ -72,6 +76,10 @@ Warrior::Warrior() : Hero(100, 100) {
     speed = 3;
 }
 
+string Warrior::getType() {
+    return "Warrior";
+}
+
 // Cleric implementation
 Cleric::Cleric() : Hero(100, 100) {
     strength = 6;
@@ -79,6 +87,10 @@ Cleric::Cleric() : Hero(100, 100) {
     constitution = 10;
     critChance = 0.25f;
     speed = 4;
+}
+
+string Cleric::getType() {
+    return "Cleric";
 }
 
 void Cleric::healSelf() {
@@ -93,6 +105,10 @@ Wizard::Wizard() : Hero(0, 100) {
     constitution = 3;
     critChance = 0.30f;
     speed = 5;
+}
+
+string Wizard::getType() {
+    return "Wizard";
 }
 
 void Wizard::fireball(Enemy& target) {
@@ -131,4 +147,8 @@ Rogue::Rogue() : Hero(25, 100) {
     constitution = 7;
     critChance = 0.75f;
     speed = 9;
+}
+
+string Rogue::getType() {
+    return "Rogue";
 }

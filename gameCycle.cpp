@@ -111,10 +111,11 @@ void Battle::startBattle(Hero& player, Enemy& enemy) {
 }
 
 void Battle::resolveBattle(Hero& player, int dayCount) {
+    cout << "Resolving battle..." << endl;
     player.resetHealth();
     player.resetShield();
     player.addGold(50 * dayCount);
-    cout << "You have won the battle and earned gold!" << endl;
+    cout << "You have won the battle and earned " << 50 * dayCount << "gold!" << endl;
 }
 
 bool Battle::determineTurnOrder(Hero& player, Enemy& enemy) {
