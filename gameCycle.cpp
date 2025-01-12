@@ -116,10 +116,20 @@ void Battle::startBattle(Hero& player, Enemy& enemy) {
     while (player.getCurrHealth() > 0 && enemy.getCurrHealth() > 0) {
         if (playerGoesFirst) {
             playerTurn(player, enemy);
-            if (enemy.getCurrHealth() > 0) enemyTurn(enemy, player);
+            cout << "Enemy health: " << enemy.getCurrHealth() << endl;
+            if (enemy.getCurrHealth() > 0) {
+            enemyTurn(enemy, player);
+            cout << "Your health: " << player.getCurrHealth() << endl;
+            cout << "Your shield: " << player.getCurrShield() << endl;
+            }
         } else {
             enemyTurn(enemy, player);
-            if (player.getCurrHealth() > 0) playerTurn(player, enemy);
+            cout << "Your health: " << player.getCurrHealth() << endl;
+            cout << "Your shield: " << player.getCurrShield() << endl;
+            if (player.getCurrHealth() > 0) {
+            playerTurn(player, enemy);
+            cout << "Enemy health: " << enemy.getCurrHealth() << endl;
+            }
         }
 
         // Check if the player lost
