@@ -23,6 +23,7 @@ Rat::Rat() : Enemy(0, 50, 20, 7) {}
 
 void Rat::attack(Hero& target) {
     std::cout << "Rat attacks " << target.getName() << " for " << getDamage() << std::endl;
+    target.takeDamage(getDamage());
 }
 
 // Knight implementation

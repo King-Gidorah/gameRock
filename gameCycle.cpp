@@ -190,6 +190,5 @@ void Battle::playerTurn(Hero& player, Enemy& target) {
 }
 
 void Battle::enemyTurn(Enemy& enemy, Hero& player) {
-    cout << "The enemy attacks!" << endl;
     enemy.attack(player);
 }
