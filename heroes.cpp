@@ -43,6 +43,7 @@ void Hero::lvlUp() {
     constitution += 1;
     critChance += 0.05f;
     level += 1;
+    attackDamage = 10 * strength;
 }
 
 bool Hero::isCriticalHit() {
@@ -74,6 +75,7 @@ Warrior::Warrior() : Hero(100, 100) {
     constitution = 10;
     critChance = 0.25f;
     speed = 3;
+    attackDamage = 10 * strength;
 }
 
 string Warrior::getType() {
@@ -87,6 +89,7 @@ Cleric::Cleric() : Hero(100, 100) {
     constitution = 10;
     critChance = 0.25f;
     speed = 4;
+    attackDamage = 10 * strength;
 }
 
 void Cleric::spells() {
@@ -120,6 +123,7 @@ Wizard::Wizard() : Hero(0, 100) {
     constitution = 3;
     critChance = 0.30f;
     speed = 5;
+    attackDamage = 10 * strength;
 }
 
 string Wizard::getType() {
@@ -162,6 +166,7 @@ Rogue::Rogue() : Hero(25, 100) {
     constitution = 7;
     critChance = 0.75f;
     speed = 9;
+    attackDamage = 10 * strength;
 }
 
 string Rogue::getType() {
