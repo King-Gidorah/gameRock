@@ -72,7 +72,6 @@ int main() {
     Tournament tournament;
 
     while (tournament.getCurrentDay() < 4) {
-        cout << "\n--- Day " << tournament.getCurrentDay() << " ---" << endl;
         tournament.startDay();
 
         cout << "You have " << hero->getCurrHealth() << " health, "

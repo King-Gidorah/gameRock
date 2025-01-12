@@ -22,7 +22,7 @@ int Tournament::getMaxBattlesPerDay() const {
 }
 
 void Tournament::startDay() {
-    cout << "\n--- Day " << getCurrentDay() + 1 << " ---" << endl;
+    cout << "\n--- Day " << getCurrentDay() << " ---" << endl;
     battlesToday = 0;
 }
 
