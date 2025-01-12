@@ -116,10 +116,14 @@ void Battle::startBattle(Hero& player, Enemy& enemy) {
     while (player.getCurrHealth() > 0 && enemy.getCurrHealth() > 0) {
         if (playerGoesFirst) {
             playerTurn(player, enemy);
+            cout << "The enemy has " << enemy.getCurrHealth() << " health remaining." << endl;
             if (enemy.getCurrHealth() > 0) enemyTurn(enemy, player);
+            cout << "You have " << player.getCurrHealth() << " health remaining." << endl;
         } else {
             enemyTurn(enemy, player);
+            cout << "You have " << player.getCurrHealth() << " health remaining." << endl;
             if (player.getCurrHealth() > 0) playerTurn(player, enemy);
+            cout << "The enemy has " << enemy.getCurrHealth() << " health remaining." << endl;
         }
     }
 }
