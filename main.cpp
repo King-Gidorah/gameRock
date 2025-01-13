@@ -156,6 +156,8 @@ int main() {
     }
 
     cout << "\nCongratulations, " << hero->getName() << "! You have completed the tournament!" << endl;
+    cout << "You are level " << hero->getLvl() << " with " << hero->getGold() << " gold." << endl;
+    cout << "Thank you for playing!" << endl;
 
     delete hero; // Clean up dynamic memory
     return 0;
