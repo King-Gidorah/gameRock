@@ -3,7 +3,6 @@
 #define ENEMIES_H
 
 #include "health.h"
-#include <iostream>
 
 // Forward declaration of Hero
 class Hero;

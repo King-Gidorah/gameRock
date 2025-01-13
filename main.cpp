@@ -4,15 +4,11 @@
 #include "heroes.h"
 #include "enemies.h"
 #include "gameCycle.h"
+#include "shop.h"
 
 using namespace std;
 
-void displayShopMenu() {
-    cout << "What would you like to buy?" << endl;
-    cout << "1. Health Potion (10 gold)" << endl;
-    cout << "2. Shield Potion (10 gold)" << endl;
-    cout << "5. Exit Shop" << endl;
-}
+
 
 int main() {
     // Game Introduction
@@ -70,6 +66,9 @@ int main() {
 
     // Tournament Setup
     Tournament tournament;
+    Shop shop;
+
+    cout << "The tournament begins!" << endl;
 
     while (tournament.getCurrentDay() < 4) {
         tournament.startDay();
@@ -82,70 +81,26 @@ int main() {
         cout << "1. Visit the shop" << endl;
         cout << "2. Go to the tournament" << endl;
 
-        while (true) {
-            cin >> choice;
-            if (cin.fail()) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input. Please choose 1 or 2." << endl;
-                continue;
+        cin >> choice;
+        if (choice == 1) {
+            cout << "Welcome to the shop!" << endl;
+            if(tournament.getCurrentDay()==2){
+                cout << "Congrats on getting through the first day. They only get tougher from here." << endl;
             }
-
-            if (choice == 1) {
-                // Shop Interaction
-                while (true) {
-                    cout << "You have " << hero->getGold() << " gold." << endl;
-                    displayShopMenu();
-                    cin >> choice;
-
-                    if (cin.fail()) {
-                        cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                        cout << "Invalid input. Please choose a valid option." << endl;
-                        continue;
-                    }
-
-                    switch (choice) {
-                        case 1: // Health Potion
-                            if (hero->getGold() >= 10) {
-                                hero->addGold(-10);
-                                hero->setMaxHealth(hero->getMaxHealth() + 10);
-                                hero->resetHealth();
-                                cout << "You bought a health potion!" << endl;
-                            } else {
-                                cout << "You don't have enough gold!" << endl;
-                            }
-                            break;
-
-                        case 2: // Shield Potion
-                            if (hero->getGold() >= 10) {
-                                hero->addGold(-10);
-                                hero->setMaxShield(hero->getMaxShield() + 10);
-                                hero->resetShield();
-                                cout << "You bought a shield potion!" << endl;
-                            } else {
-                                cout << "You don't have enough gold!" << endl;
-                            }
-                            break;
-
-                        case 5: // Exit Shop
-                            cout << "Exiting the shop..." << endl;
-                            break;
-
-                        default:
-                            cout << "Invalid choice. Please try again." << endl;
-                            continue;
-                    }
-
-                    if (choice == 5) break;
-                }
-            } else if (choice == 2) {
-                // Go to Tournament
-                break;
-            } else {
-                cout << "Invalid choice. Please choose 1 or 2." << endl;
+            else if(tournament.getCurrentDay()==3){
+                cout << "You're doing great! Keep it up!" << endl;
             }
+            else if(tournament.getCurrentDay()==4){
+                cout << "You're almost there! Keep pushing!" << endl;
+                cout << "I hear the king will be there today." << endl;
+            }
+            else{
+            shop.describeShop();
+            }
+            cout << "You have " << hero->getGold() << " gold." << endl;
+            shop.shopInteraction(hero);
         }
+        cout << "Moving to the tournament..." << endl;
 
         // Tournament Battles
         for (int i = 0; i < 4; ++i) {
