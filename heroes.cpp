@@ -1,6 +1,7 @@
 // heroes.cpp
 #include "heroes.h"
 #include "enemies.h"
+#include "shop.h"
 #include <iostream>
 
 using namespace std;
@@ -66,6 +67,57 @@ void Hero::addGold(int amount) {
 
 void Hero::spells() {
     std::cout << "No spells available" << std::endl;
+}
+
+void Hero::addItem(const Items& item) {
+    inventory.push_back(item);
+}
+
+void Hero::showInventory() {
+    for (const auto& item : inventory) {
+        std::cout << item.getName() << std::endl;
+    }
+}
+
+void Hero::useHealthPotion() {
+    for (auto it = inventory.begin(); it != inventory.end(); ++it) {
+        if (it->getName() == "Health Potion") {
+            gainHealth(25);
+            std::cout << "You used a health potion and gained 25 health!" << std::endl;
+            inventory.erase(it);
+            return;
+        }
+    }
+    std::cout << "You don't have any health potions!" << std::endl;
+}
+
+void Hero::useShieldPotion() {
+    for (auto it = inventory.begin(); it != inventory.end(); ++it) {
+        if (it->getName() == "Shield Potion") {
+            gainShield(25);
+            std::cout << "You used a shield potion and gained 25 shield!" << std::endl;
+            inventory.erase(it);
+            return;
+        }
+    }
+    std::cout << "You don't have any shield potions!" << std::endl;
+}
+
+void Hero::useItem(Items& item) {
+    if (item.getName() == "Health Potion") {
+        useHealthPotion();
+    }
+    if (item.getName() == "Shield Potion") {
+        useShieldPotion();
+    }
+    if (item.getName() == "Longsword") {
+        equipLongsword(item);
+    }
+}
+
+void Hero::equipLongsword(Items& item) {
+    attackDamage += 30;
+    std::cout << "You equipped a longsword and gained 30 attack damage!" << std::endl;
 }
 
 // Warrior implementation

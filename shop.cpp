@@ -19,6 +19,7 @@ void Shop::displayShopMenu() {
     cout << "What would you like to buy?" << endl;
     cout << "1. Health Potion (10 gold)" << endl;  
     cout << "2. Shield Potion (10 gold)" << endl;
+    cout << "3. Longsword (25 gold)" << endl;
     cout << "5. Exit Shop" << endl;
 }
 
@@ -43,6 +44,10 @@ void Shop::shopInteraction(Hero* hero) {
             case 2: // Shield Potion
                 buyShieldPotion(hero);
                 break;
+            
+            case 3: // Longsword
+                buyLongsword(hero);
+                break;
 
             case 5: // Exit Shop
                 exitShop();
@@ -60,10 +65,8 @@ void Shop::shopInteraction(Hero* hero) {
 void Shop::buyHealthPotion(Hero* hero) {
     if (hero->getGold() >= 10) {
         hero->addGold(-10);
-        hero->setMaxHealth(hero->getMaxHealth() + 10);
-        hero->resetHealth();
         cout << "You bought a health potion!" << endl;
-        cout << "Your max health is now " << hero->getMaxHealth() << endl;
+        hero->addItem(Items::healthPotion());
     } else {
         cout << "You don't have enough gold!" << endl;
     }
@@ -72,10 +75,18 @@ void Shop::buyHealthPotion(Hero* hero) {
 void Shop::buyShieldPotion(Hero* hero) {
     if (hero->getGold() >= 10) {
         hero->addGold(-10);
-        hero->setMaxShield(hero->getMaxShield() + 10);
-        hero->resetShield();
         cout << "You bought a shield potion!" << endl;
-        cout << "Your max shield is now " << hero->getMaxShield() << endl;
+        hero->addItem(Items::shieldPotion());
+    } else {
+        cout << "You don't have enough gold!" << endl;
+    }
+}
+
+void Shop::buyLongsword(Hero* hero) {
+    if (hero->getGold() >= 25) {
+        hero->addGold(-25);
+        cout << "You bought a longsword!" << endl;
+        hero->addItem(Items::longsword());
     } else {
         cout << "You don't have enough gold!" << endl;
     }
@@ -83,4 +94,22 @@ void Shop::buyShieldPotion(Hero* hero) {
 
 void Shop::exitShop() {
     cout << "Exiting the shop..." << endl;
+}
+
+Items::Items(string itemName): name(itemName) {}
+
+string Items::getName() const {
+    return name;
+}
+
+Items Items::healthPotion() {
+    return Items("Health Potion");
+}
+
+Items Items::shieldPotion() {
+    return Items("Shield Potion");
+}
+
+Items Items::longsword() {
+    return Items("Longsword");
 }

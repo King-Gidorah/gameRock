@@ -44,9 +44,9 @@ void SlimeMonster::heal() {
 }
 
 // Dog implementation
-Dog::Dog() : Enemy(10, 100, 30, 9) {}
+EvilWolf::EvilWolf() : Enemy(10, 100, 30, 9) {}
 
-void Dog::rage() {
+void EvilWolf::rage() {
     damage *= 2;
 }
 

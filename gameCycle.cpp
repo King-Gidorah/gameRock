@@ -1,5 +1,6 @@
 #include "gameCycle.h"
 #include <iostream>
+#include "shop.h" // Include the header file for Items
 
 using namespace std;
 
@@ -57,8 +58,8 @@ void Tournament::fightBattles(Hero& player) {
 
         case 2:
             if (getBattlesToday() == 0) {
-                enemy = new Dog();
-                cout << "Get ready to fight a Dog!" << endl;
+                enemy = new EvilWolf();
+                cout << "Get ready to fight an Evil Wolf!" << endl;
             } else if (getBattlesToday() == 1) {
                 enemy = new RoyalKnight();
                 cout << "Get ready to fight a Royal Knight!" << endl;
@@ -178,7 +179,18 @@ void Battle::playerTurn(Hero& player, Enemy& target) {
             break;
         case 3:
             cout << "Choose an item to use (ends your turn)." << endl;
-            // Add item logic here
+            player.showInventory();
+            int itemChoice;
+            std::cout << "Enter item number to use (1-" << player.inventory.size() << "): ";
+            std::cin >> itemChoice;
+
+            if (itemChoice >= 1 && itemChoice <= player.inventory.size()) {
+            std::cout << "You selected: " << player.inventory[itemChoice - 1].getName() << std::endl;
+            player.useItem(player.inventory[itemChoice - 1]);
+            } else {
+                std::cout << "Invalid choice!" << std::endl;
+            }
+
             validAction = true;  // Action was valid, exit the loop
             break;
         default:

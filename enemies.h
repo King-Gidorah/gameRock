@@ -42,9 +42,9 @@ public:
     void heal();
 };
 
-class Dog : public Enemy {
+class EvilWolf : public Enemy {
 public:
-    Dog();
+    EvilWolf();
     void rage();
 };
 
